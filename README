@@ -1,0 +1,9 @@
+A generator for generating .nfo files for movies that won't Identify on Boxee
+
+Changelog: 
+V 0.2:
+- Added support for manually entering Title, Year and Plot to the movies
+
+V 0.1:
+- IMDB support throught http://www.imdbapi.com
+- Own thumbs support (only JPG files below 1MB)
