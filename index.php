@@ -52,6 +52,7 @@
 			</table>
 		</form>
 		<h5>Versjon 0.3 Beta</h5>
+		<h5>Changelog mm. finner du på <a href="https://github.com/Sjark/Boxee-NFO-Generator">GitHub</a></h5>
 	</div>
 	</body>
 </html>
