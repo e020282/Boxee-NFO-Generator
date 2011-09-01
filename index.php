@@ -10,9 +10,23 @@
 		<h1>The Boxee NFO Generator</h1><br />
 		<h5 style="margin-top: -30px;">Made by Sjark aka Lasse</h5>
 		<?php
-			$error = $_GET['error'];
+			if(isset($_GET['error'])) {
+				$error = $_GET['error'];
+			}
+			else {
+				$error = 0;
+			}
 			if ($error == "1") {
-				echo "<p style=\"color: red; font-weight:bold\">Du har ikke skrevet inn en ID!!!</p>";
+				echo "<p style=\"color: red; font-weight:bold\">Du har ikke skrevet inn en ID</p>";
+			}
+			elseif ($error == "2") {
+				echo "<p style=\"color: red; font-weight:bold\">Feil ved opplasting av fil, vennligst prøv igjen</p>";
+			}
+			elseif ($error == "3") {
+				echo "<p style=\"color: red; font-weight:bold\">Feil type eller sørrelse, det må være en JPG fil på max 1MB</p>";
+			}
+			elseif ($error == "4") {
+				echo "<p style=\"color: red; font-weight:bold\">Ikke gyldig IMDB ID</p>";
 			}
 		?>
 		<form enctype="multipart/form-data" action="gennfo.php" method="post">
@@ -37,7 +51,7 @@
 				</tr>
 			</table>
 		</form>
-		<h5>Versjon 0.2 Beta</h5>
+		<h5>Versjon 0.3 Beta</h5>
 	</div>
 	</body>
 </html>

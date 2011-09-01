@@ -1,6 +1,9 @@
 A generator for generating .nfo files for movies that won't Identify on Boxee
 
 Changelog: 
+V 0.3:
+- Added some basic error checking
+
 V 0.2:
 - Added support for manually entering Title, Year and Plot to the movies
 

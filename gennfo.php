@@ -1,10 +1,14 @@
 <?php
 function uploadThumb($moviename) {
+	if (!file_exists("thumbs") || !is_dir("thumbs")) {
+		mkdir("thumbs");
+	}
+	
 	if ((($_FILES["thumb"]["type"] == "image/jpeg")
 	|| ($_FILES["thumb"]["type"] == "image/pjpeg"))
 	&& ($_FILES["thumb"]["size"] < 1000000)) {
 		if ($_FILES["thumb"]["error"] > 0) {
-			return "E1";
+			return "E2";
 		}
 		else {
 			$filename = explode(".", $_FILES["thumb"]["name"]);
@@ -21,7 +25,7 @@ function uploadThumb($moviename) {
 		}
 	}
 	else {
-		return "E2";
+		return "E3";
 	}
 	
 }
@@ -44,11 +48,11 @@ if(isset($_POST['id']) && !empty($_POST['id'])) {
 	$imdbInfo = json_decode($toDecode, TRUE);
 	if($_FILES["thumb"]["name"] !== "") {
 		$upload = uploadThumb($imdbInfo["Title"]);
-		if ($upload == "E1") {
-			die("Feil ved opplasting av fil, vennligst pr&oslash;v igjen");
+		if ($upload == "E2") {
+			header("location: index.php?error=2");
 		}
-		elseif ($upload == "E2") {
-			die("Feil type eller st&oslash;rrelse, det m&aring; v&aelig;re en JPG fil p&aring; max 1MB");
+		elseif ($upload == "E3") {
+			header("location: index.php?error=3");
 		}
 		else {
 			$thumb = $upload;
@@ -56,6 +60,9 @@ if(isset($_POST['id']) && !empty($_POST['id'])) {
 	}
 	else {
 		$thumb = $imdbInfo["Poster"];
+	}
+	if($imdbInfo['Response'] == "Parse Error") {
+		header("location: index.php?error=4");
 	}
 	
 	$filename = "movie.nfo";
